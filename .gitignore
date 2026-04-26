@@ -1,17 +1,22 @@
-# Byte-compiled / optimized / DLL files
+# =============================================================================
+# OpenMythos — .gitignore
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Python bytecode & caches
+# -----------------------------------------------------------------------------
 __pycache__/
-*.py[codz]
+*.py[cod]
 *$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
+*.pyo
 .Python
+
+# -----------------------------------------------------------------------------
+# Distribution / packaging
+# -----------------------------------------------------------------------------
 build/
-experimental/
-develop-eggs/
 dist/
+develop-eggs/
 downloads/
 eggs/
 .eggs/
@@ -26,191 +31,173 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
 *.spec
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# UV
-#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#uv.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-#poetry.toml
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
-#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
-#pdm.lock
-#pdm.toml
-.pdm-python
-.pdm-build/
-
-# pixi
-#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
-#pixi.lock
-#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
-#   in the .venv directory. It is recommended not to include this directory in version control.
-.pixi
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
+# -----------------------------------------------------------------------------
+# Virtual environments
+# -----------------------------------------------------------------------------
 .env
 .envrc
-.venv
+.venv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+venv-mythos/
+.pixi/
+__pypackages__/
 
-# Spyder project settings
-.spyderproject
-.spyproject
+# -----------------------------------------------------------------------------
+# Testing & coverage
+# -----------------------------------------------------------------------------
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
 
-# Rope project settings
-.ropeproject
+# -----------------------------------------------------------------------------
+# Jupyter / IPython
+# -----------------------------------------------------------------------------
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
 
-# mkdocs documentation
-/site
+# -----------------------------------------------------------------------------
+# Experiment results — large binary files, not for version control
+# Figures and JSON summaries ARE committed (small, useful for paper)
+# -----------------------------------------------------------------------------
 
-# mypy
+# PyTorch checkpoint files (can be hundreds of MB)
+results/**/*.pt
+results_overnight/**/*.pt
+results_gpu/**/*.pt
+
+# Checkpoint directories (keep the dirs via .gitkeep, not the .pt files)
+results/checkpoints_*/
+results_overnight/checkpoints_*/
+results_gpu/checkpoints_*/
+
+# Temporary test checkpoints
+results/test_ckpt/
+
+# HuggingFace dataset cache
+~/.cache/huggingface/
+.cache/
+
+# -----------------------------------------------------------------------------
+# Keep these result files (small, needed for paper figures & reproducibility)
+# -----------------------------------------------------------------------------
+# results/run_*.json          ← kept (small JSON, paper tables)
+# results/halt_log_*.jsonl    ← kept (small JSONL, paper figures)
+# results/figures/            ← kept (PNG figures for paper)
+# results/difficulty_validation.pt is small but binary — exclude anyway
+results/difficulty_validation.pt
+results/act_scores.pt
+results/halt_depths.pt
+results_overnight/difficulty_validation.pt
+results_overnight/act_scores.pt
+results_overnight/halt_depths.pt
+results_gpu/difficulty_validation.pt
+results_gpu/act_scores.pt
+results_gpu/halt_depths.pt
+
+# -----------------------------------------------------------------------------
+# Logs
+# -----------------------------------------------------------------------------
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# -----------------------------------------------------------------------------
+# OS-specific
+# -----------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# -----------------------------------------------------------------------------
+# IDE / editor
+# -----------------------------------------------------------------------------
+.idea/
+*.iml
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# -----------------------------------------------------------------------------
+# Type checkers & linters
+# -----------------------------------------------------------------------------
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
 .pyre/
-
-# pytype static type analyzer
 .pytype/
-
-# Cython debug symbols
+.ruff_cache/
 cython_debug/
 
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+# -----------------------------------------------------------------------------
+# Build tools
+# -----------------------------------------------------------------------------
+.pybuilder/
+target/
+.pdm-python
+.pdm-build/
 
-# Abstra
-# Abstra is an AI-powered process automation framework.
-# Ignore directories containing user credentials, local state, and settings.
-# Learn more at https://abstra.io/docs
+# -----------------------------------------------------------------------------
+# Docs build output
+# -----------------------------------------------------------------------------
+docs/_build/
+/site
+
+# -----------------------------------------------------------------------------
+# Secrets & local config
+# -----------------------------------------------------------------------------
+.env.local
+.env.*.local
+secrets.py
+local_settings.py
+*.pem
+*.key
+
+# -----------------------------------------------------------------------------
+# Kiro IDE (keep specs, ignore generated/cache files)
+# -----------------------------------------------------------------------------
+.kiro/settings/
+.kiro/hooks/
+
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
 .abstra/
-
-# Visual Studio Code
-#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
-#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
-#  you could uncomment the following to ignore the entire vscode folder
-# .vscode/
-
-# Ruff stuff:
-.ruff_cache/
-
-# PyPI configuration file
-.pypirc
-
-# Cursor
-#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
-#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
-#  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
-
-# Marimo
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-
-# OpenMythos Specific
-.env
-.ipynb_checkpoints/
-*.log
-docs/_build/
-example_local.py
-venv-mythos/
+.pypirc
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
+*.mo
+*.pot
+db.sqlite3
+db.sqlite3-journal
